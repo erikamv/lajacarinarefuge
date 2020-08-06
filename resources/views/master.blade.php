@@ -85,8 +85,6 @@
       </header>
 
 
-
-
       <!--Contenido-->
       @yield('contenido')
     

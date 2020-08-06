@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Auth, Mail, Str;
 use App\Mail\UserSendRecover;
 use App\Mail\UserSendNewPassword;
+use App\Mail\UserEmailConfirmation;
 
 class ConnectController extends Controller
 {
@@ -17,10 +18,12 @@ class ConnectController extends Controller
         $this->middleware('guest')->except(['getLogout']);
     }
 
+    //Login view
     public function getLogin(){
         return view ('connect.login');
     }
 
+    //Verificar datos email/contraseña/validation
     public function postLogin(Request $request){
         $rules =[
             'email'=> 'required|email',
@@ -52,6 +55,7 @@ class ConnectController extends Controller
 
     }
 
+    //Desloggear usuario
     public function getLogout(){
         $status=Auth::User()->status;
         Auth::logout();
@@ -64,10 +68,12 @@ class ConnectController extends Controller
         
     }
 
+    //Vista de Registro
     public function getRegister(){
         return view ('connect.register');
     }
 
+    //Guardar datos registro
     public function postRegister(Request $request){
         $rules =[
             'name'=> 'required',
@@ -97,15 +103,41 @@ class ConnectController extends Controller
         $user -> lastname = e($request-> input ('lastname'));
         $user -> email = e($request-> input ('email'));
         $user -> password = Hash::make($request-> input ('password'));
-        $user -> save ();
-        return Redirect::to('/login')->with('status', 'Usuario creado, inicie sesión para comenzar');
+        $user -> confirmation_code = Str::random(8);
+        $user ->save(); 
+        $u = User::findOrFail($user->id);
+        $data = ['name'=>$u->name, 'lastname'=>$u->lastname, 'email'=>$u->email, 'confirmation_code'=>$u->confirmation_code ]; 
+        Mail::to($u->email)->send(new UserEmailConfirmation($data));
+        return redirect('/confirmation');
+    }
+
+    //Confirmation view
+    public function getEmailConfirmation(){
+        return view('connect.confirmation');
+    }
+
+     //Activar cuenta email verificado
+     public function postEmailConfirmation($code){
+        $user = User::where('confirmation_code','=', $code)->first();
+        if (! $user){
+            return redirect('/');
+        }
+        $user->status = "1";
+        $user->confirmation_code = null;
+        $user->save();
+        if (Auth::attempt($user->email, $user->password)) {
+            // Authentication passed...
+            return redirect()->intended('/');
+        }
 
     }
 
+
+    //Recuperar contraseña vista
     public function getRecover(){
         return view ('connect.recover');
     }
-
+    //Recuperar contraseña 
     public function postRecover(Request $request){
         $rules =[
             'email'=> 'required|email',
@@ -139,11 +171,13 @@ class ConnectController extends Controller
         
     }
 
+    //Vista de reset
     public function getReset(Request $request){
         $data  = ['email' => $request->get('email')];
         return view('connect.reset', $data);
     }
 
+    //Guardar datos de reset
     public function postReset(Request $request){
         //comparar codigos
         $rules =[
@@ -178,4 +212,7 @@ class ConnectController extends Controller
             return back()->with('alert', 'Correo electrónico o código de recuperación incorrecto');
         }
     }
+
+
+      
 }

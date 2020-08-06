@@ -12,8 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Config::set('debugbar.enabled', false);
 
 Route::get('/', 'ContentController@getHome');
+
+
 
 //Routers Auth
 Route::get('/login', 'ConnectController@getLogin')->name('login');
@@ -25,6 +28,9 @@ Route::post('/reset', 'ConnectController@postReset')->name('reset');
 Route::get('/logout', 'ConnectController@getLogout')->name('logout');
 Route::get('/register', 'ConnectController@getRegister')->name('register');
 Route::post('/register', 'ConnectController@postRegister')->name('register');
+// E-mail verification
+Route::get('/confirmation', 'ConnectController@getEmailConfirmation')->name('verification');
+Route::get('/confirmation/{code}', 'ConnectController@postEmailConfirmation')->name('verification');
 
 //ModuleUserActions
 Route::get('/account', 'UserController@getAccountHome')->name('account');

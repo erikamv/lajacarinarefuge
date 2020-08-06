@@ -47,21 +47,26 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="menu">
                 <ul class="navbar-nav">
-                  <li class="item px-3"><a href="#">INICIO</a></li>
-                  <li class="item px-3"><a href="#">¿QUIÉNES SOMOS?</a></li>
+                  <li class="item-activo px-3"><a href="{{url('/')}}">INICIO</a></li>
+                  <li class="item px-3"><a href="{{url('/information')}}">¿QUIÉNES SOMOS?</a></li>
                   <li class="item px-3"><a href="#">¿CÓMO AYUDAR?</a>
                     <ul class="desple">
-                      <li><a href=""> Adoptar/Apadrinar</a></li>
-                      <li><a href=""> Donar</a></li>
-                      <li><a href=""> Hogar Temporal</a></li>
-                      <li><a href=""> Voluntariado</a></li>
-                      <li><a href=""> Patrocinador</a></li>
-                      
+                      <li><a href="{{url('/adoptions/all')}}"> Adoptar/Apadrinar</a></li>
+                      <li><a href="{{url('/donations')}}"> Donar</a></li>
+                      <li><a href="{{url('/homes/form')}}"> Hogar Temporal</a></li>
+                      <li><a href="{{url('/volunteer/form')}}"> Voluntariado</a></li>
+                      <li><a href="{{url('/collaborators/form')}}"> Patrocinador</a></li>
                     </ul>
                   </li>
-                  <li class="item px-3"><a href="#">TIENDA</a></li>
-                  <li class="item px-3"><a href="#">CONTÁCTANOS</a></li>
-                  <li class="item item-activo px-3"><a href="#" class="inicio" id="navbarNavAltMarkup" title="Iniciar Sesión"><i class="far fa-user-circle"></i></a></li>
+                  <li class="item px-3"><a href="{{url('/store')}}">TIENDA</a></li>
+                  <li class="item px-3"><a href="{{url('/contact')}}">CONTÁCTANOS</a></li>
+                
+                  <!--Usuario no registrado-->
+                 
+                  <li class="item px-3"><a href="{{url('/login')}}" class="inicio" id="navbarNavAltMarkup" title="Iniciar Sesión"><i class="far fa-user-circle"></i></a></li>
+                   <!--Usuario registrado-->
+                
+                
                 </ul>
               </div>
           </div>
