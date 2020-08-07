@@ -113,7 +113,7 @@
                         @if(kvfj(Auth::user()->permissions, 'productsGallery'))
                         {!!Form::open(array('url'=>'/admin/products/'.$articulo->idarticulo.'/gallery/add', 'method'=>'POST','autocomplete'=>'off','files'=>'true', 'id'=>'form_product_gallery'))!!}
                         <div class="thumbs">
-                            <input type="file" name="file_name" required class="form-control" >
+                            
                             {!! Form::file('file_name', ['id' => 'product_file_image', 'accept'=> 'image/*',  'required']) !!}
                             @foreach ($images as $img)
                             @if ($img->idarticulo==$articulo->idarticulo)

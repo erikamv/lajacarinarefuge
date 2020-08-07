@@ -5,26 +5,49 @@
 @section('contenido')
 
 <hr>
+<br><div class="mtop16">
+@if (session('status'))
+<div class="alert alert-success" style="text-align: center">
+    {{ session('status') }}
+</div>
+@endif
+@if (session('alert'))
+<div class="alert alert-danger" style="text-align: center">
+    {{ session('alert') }}
+</div>
+@endif
+</div>
+<div class="mtop16">
+@if (count($errors)>0)
+<div class="alert alert-danger" style="text-align: left">
+    @foreach ($errors -> all() as $error)
+        {{$error}}
+    @endforeach
+</div>
+ @endif
+</div>
       <section id="about">
         <div class="container">
           <div class="row">
             <div class="col-md-6 pt-4">
               <h3>Escríbenos</h3>
-              {!!  Form::open(['url'=>'/contact/form', 'method'=>'POST']) !!}
+              
               <div class="form-group">
                 <fieldset>
+                  {!!  Form::open(['url'=>'/contact/form', 'method'=>'POST']) !!}
                   <label for="nombre" class="mt-2 pt-2">Nombre</label>
                   <input id="nombre" name="nombre" type="text" class="form-control" required>
                   <label for="email" class="mt-2 pt-2">Email</label>
                   <input id="email" name="email" type="email" class="form-control"required>
                   <label for="mensaje" class="mt-2 pt-2">Mensaje</label>
-                  <textarea id="observaciones" name="mensaje" class="form-control" rows="10" required></textarea>
+                  {!! Form::textarea('mensaje', null, ['class'=>'form-control', 'required', 'rows'=>'10'])!!}
                   <div class="boton pt-5" style="text-align: center;">
                     <button type="submit" class="btn btn-adopta">Enviar</button> 
                   </div>
+                  {!! Form::close() !!}
                 </fieldset>
               </div>
-              {!! Form::close() !!}
+              
             </div>
             <div class="col-md-6 pt-4">
               <h3>Contáctos</h3>

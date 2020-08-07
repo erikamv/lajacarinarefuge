@@ -5,19 +5,17 @@
     <a style="color: #828860; font-size: 18px;">Tienda</a>
 </li>
 <li class="active">
-    <a href="{{url('/admin/products/activo')}}" class="nav-link" style="color: #828860; font-size: 18px;">Artículos</a>
+    <a href="{{url('/admin/products/1')}}" class="nav-link" style="color: #828860; font-size: 18px;">Artículos</a>
 </li>
 @endsection
 
 @section('contenido')
-
-
                     <div class="panel panel-body ">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                 <h3>Listado de Artículos 
                                     @if(kvfj(Auth::user()->permissions, 'productsAdd'))
-                                    <a href="/admin/products/add"> <button class="btn btn-link"> Agregar</button></a>
+                                    <a href="/admin/products/add/product"> <button class="btn btn-link"> Agregar</button></a>
                                     @endif
                                 </h3>
                                 <div class="panel  ">

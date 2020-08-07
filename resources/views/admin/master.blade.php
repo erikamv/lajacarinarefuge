@@ -175,14 +175,18 @@
 						<span class="fa fa-arrow-right">&nbsp;</span> Hogar Temporal
 					</a></li>
 					@endif
-					<li><a class="" href="{{url('/admin/contacts')}}">
+
+					@if(kvfj(Auth::user()->permissions, 'contact'))
+					<li><a class="" href="{{url('/admin/contact/all')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Contáctanos
 					</a></li>
+					@endif
+					
 				</ul>
 			</li>
             
                     <!--Section ADMINISTRACION Y PERMISOS-->
-            <li><a href="{{url('/admin/account')}}"><em class="fas fa-cog">&nbsp;</em> Cuenta </a></li>
+            <!--li><a href="{{url('/admin/account')}}"><em class="fas fa-cog">&nbsp;</em> Cuenta </a></li-->
             
                     <!--Section LOGOUT-->
             <li><a href="{{url('/logout')}}"><em class="fa fa-power-off">&nbsp;</em> Salir </a></li>

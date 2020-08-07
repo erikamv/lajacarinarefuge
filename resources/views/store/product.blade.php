@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="categoria">
-            <a href="#">Regresar</a>
+            <a href="{{url('/products/all')}}">Regresar</a>
           </div>
         </div>
       </div>
@@ -28,26 +28,27 @@
                       </ol>
                       <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active product-top">
-                          <img class="img-fluid"  id="imagen" src="imagenes/palcas-hueso.png" alt="Card image cap" title="" width="500px" height="300px">
+                           
+                          <a href="{{url('/static/imagenes/articulos/'.$articulo->imagen)}}" data-fancybox="gallery"><img class="img-fluid" width="500px" height="300px" src="{{asset('/static/imagenes/articulos/'.$articulo->imagen)}}"heigth="80px" width="80px"></a>
                         </div>
-                        <div class="carousel-item product-top">
+                        <!--div class="carousel-item product-top">
                           <img class="img-fluid"  id="imagen" src="imagenes/placas-estrella.png" alt="Card image cap" title="" width="500px" height="300px">
                         </div>
                         <div class="carousel-item product-top">
                           <img class="img-fluid"  id="imagen" src="imagenes/placas-huellas.png" alt="Card image cap" title="" width="500px" height="300px">
-                        </div>
+                        </div-->
                       </div>
-                      <a class="carousel-control-prev" href="#myCarouselArticle" role="button" data-slide="prev">
+                      <!--a class="carousel-control-prev" href="#myCarouselArticle" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                       </a>
                       <a class="carousel-control-next" href="#myCarouselArticle" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
-                      </a>
+                      </a-->
                     </div>
-                  <div class="row hidden-xs " id="slider-thumbs">
-                    <!-- Bottom switcher of slider -->
+                  <!--div class="row hidden-xs " id="slider-thumbs">
+                    < Bottom switcher of slider >
                     <ul class="reset-ul d-flex flex-wrap list-thumb-gallery">
                        <li class="col-sm-3">
                           <a class="thumbnail" data-target="#myCarouselArticle" data-slide-to="0">
@@ -67,30 +68,37 @@
                         </a>
                       </li>
                     </ul>                 
-                  </div>
+                  </div-->
                 </div>
                 </div>
               </div>
+             
               <div class="detalles col-md-6 pt-5">
                 <div class="nombre-producto">
-                  <h4 class="nombre">{{$articulo->nombre}}</h4>
-                  <p style="font-size: 1rem;">{{$articulo->descripcion}}</p>
+                  <h4 class="nombre">{{$articulo['nombre']}}</h4>
+                  <p style="font-size: 1rem;">{{$articulo['descripcion']}}</p>
                 </div>
                 <hr>
                 <div class="precio-producto pt-2">
-                  <h3 class="precio">$ {{$articulo->precio}}</h3>
+                  <h3 class="precio">$ {{$articulo['precio']}}</h3>
                   <p style="font-size: 1rem;">Impuestos incluidos</p>
                 </div>
                 <div class="datos-pedido">
-                  {!! Form::open(['url'=>'/products/'.$articulo->idarticulo.'/'.$articulo->idcategoria, 'method'=>'POST']) !!}
+                  {!! Form::open(['url'=>'/products/'.$articulo['codigo'].'/'.$articulo['idarticulo'], 'method'=>'POST']) !!}
                     <div class="cantidad-producto pt-1">
                       <label for="cantidad"> <b>Cantidad:</b> </label>
                       <input id="cantidad" name="cantidad" type="number" class="form-control" required>
                     </div>
-                    <div class="forma-producto pt-1">
+                    <!--div class="forma-producto pt-1">
                       <label for="forma"><b>Forma:</b></label>
-                      {!! Form::select('forma', $articulo->forma, ) !!}
+                      <select name="forma" id="forma" class="form-control" required>
+                        <option value="" >Formas disponibles</option> 
+                        <option value="hueso" >Hueso</option>
+                        <option value="huella" >Huella</option>
+                        <option value="estrella" >Estrella</option>
+                      </select>
                     </div>
+                    
                     <div class="color-producto pt-1">
                       <label for="color"> <b> Color:</b></label>
                       <select name="forma" id="forma" class="form-control" required>
@@ -99,9 +107,9 @@
                         <option value="huella" >Azul</option>
                         <option value="estrella" >Morado</option>
                       </select>
-                    </div>
+                    </div--><br><br>
                     <div class="descripcion-producto pt-1">
-                      <label for="descripcion"> <b>Datos para la placa:</b> </label>
+                      <label for="descripcion"> <b>Datos/especificaciones para el producto "{{$articulo['nombre']}}" :</b> </label>
                       <br>
                       <textarea name="descripcion" id="descripcion" cols="30" rows="5" required></textarea>
                     </div>

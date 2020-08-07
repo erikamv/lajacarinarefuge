@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Auth, Mail, Str;
 use App\Http\Models\Publication;
 use App\Http\Models\TemporalHome;
+use App\Http\Models\Cart;
 use DB;
 use App\Http\Models\Volunteer;
 use App\Mail\VolunteerSendConfirmation;
@@ -19,7 +20,9 @@ class ContentController extends Controller
 {
     
     public function getHome(){
-        return view('home');
+
+        $carrito = Cart::findOrCreateBySessionID(null);
+        return view('home', ["carrito"=>$carrito]);
     }
 
 

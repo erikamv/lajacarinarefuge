@@ -31,7 +31,7 @@ class StoreController extends Controller
                 $articulos=DB::table('articulo as a')
                 -> join('categoria as c', 'a.idcategoria','=','c.idcategoria')
                 -> select('a.idarticulo', 'a.nombre','a.codigo','a.stock', 'c.nombre as categoria', 'a.descripcion','a.precio','a.imagen','a.estado')
-                -> where('a.idcategoria','=',$status)
+                -> where('a.idarticulo','=',$status)
                 -> orderBy('a.idarticulo','desc')
                 -> paginate(10);
                // return view ('store.store', ["articulos"=>$articulos,"searchText"=>$query]);
@@ -42,11 +42,11 @@ class StoreController extends Controller
         return view ('store.store', ["articulos"=>$articulos,"searchText"=>$query, 'categoria'=>$categoria]);
     }
 
- /*public function getProductProfile($id){
-        $articulo=Articulo::findOrFail($id);
-        $galeria=PGallery::where('idarticulo','=',$id);
-        return view ("store.product", ["articulo"=>$articulo, "galeria"=>$galeria]);
-    }/*/
+    public function getProductProfile($code, $id){
+        $articulo=Product::findOrFail($id);
+        //$galeria=PGallery::where('idarticulo','=',$id);
+        return view ("store.product", ["articulo"=>$articulo]);
+    }
 
     public function getStoreCart(){
         return view ('store.cart');

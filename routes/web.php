@@ -12,13 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Config::set('debugbar.enabled', false);
+Config::set('debugbar.enabled', true);
 //INICIO
 Route::get('/', 'ContentController@getHome')->name('inicio');
 //NOTICIAS
 Route::get('/','PublicationController@getPublicationPost')->name('post');
-//CONTACTANOS
-Route::get('/contact', 'ContentController@getContactHome')->name('contactos');
 //QUIENES SOMOS
 Route::get('/information', 'ContentController@getInformationHome')->name('quienessomos');
 //QUIENES SERVICIO
@@ -39,6 +37,9 @@ Route::get('/homes/form', 'HomeController@getHomeIndex')->name('home');
 //VOLUNTARIOS
 Route::get('/volunteer/form', 'VolunteerController@getVolunteer')->name('volunteer');
 Route::post('/volunteer/form', 'VolunteerController@postVolunteer')->name('volunteerForm');
+//CONTACTANOS
+Route::get('/contact/form', 'ContactController@getContact')->name('contact');
+Route::post('/contact/form', 'ContactController@postContact')->name('contactForm');
 //COLABORADORES
 Route::get('/collaborators/form', 'CollaboratorController@getCollaboratorHome')->name('collaborator');
 Route::post('/collaborators/form', 'CollaboratorController@postCollaboratorHome')->name('collaboratorForm');
@@ -80,7 +81,8 @@ Route::post('/account/edit/password', 'UserController@postAccountPassword')->nam
 
 //TIENDA
 Route::get('/products/{status}', 'StoreController@getProductPost')->name('post');
-//Route::get('/products/{status}/{id}', 'StoreController@getProductProfile')->name('postProduct');
+Route::get('/products/{code}/{id}', 'StoreController@getProductProfile')->name('postProduct');
+Route::get('/products/{code}/{id}', 'StoreController@postProductProfile')->name('postProductAdd');
 
 //TIENDA
 //Route::get('/store', 'ContentController@getStoreHome')->name('store');
@@ -93,6 +95,8 @@ Route::get('/products/{id}/cart/paid', 'StoreController@getStoreCartPaid')->name
 
 
 
+
+Route::get('/products','ProductController@getProducts');
 
 
 

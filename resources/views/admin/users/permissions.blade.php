@@ -53,6 +53,8 @@
                         @include('admin.users.userPermissions.moduleHomes')
                         @include('admin.users.userPermissions.moduleCollaborators')
                         @include('admin.users.userPermissions.moduleAdoptions')
+                        @include('admin.users.userPermissions.modulePadrinos')
+                        @include('admin.users.userPermissions.moduleContact')
                         
                     </div>
                     <div >

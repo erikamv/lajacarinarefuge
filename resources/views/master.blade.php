@@ -28,7 +28,7 @@
             @if(!Auth::guest())
             <a href="{{url('/products/'.Auth::user()->id.'/cart')}}" class="carrito" title="Carrito">
               <i class="fas fa-shopping-cart"></i>
-              <span id="cart_menu_num" data-action="cart-can" class="badge rounded-circle">0</span>
+              <span id="cart_menu_num" data-action="cart-can" class="badge rounded-circle">{{$carrito->productsSize()}}</span>
             </a>
             @endif
           </div>
@@ -59,7 +59,7 @@
                     </ul>
                   </li>
                   <li class="item px-3"><a href="{{url('/products/all')}}">TIENDA</a></li>
-                  <li class="item px-3"><a href="{{url('/contact')}}">CONTÁCTANOS</a></li>
+                  <li class="item px-3"><a href="{{url('/contact/form')}}">CONTÁCTANOS</a></li>
                 
                   <!--Usuario no registrado-->
                   @if(Auth::guest())

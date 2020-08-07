@@ -46,11 +46,18 @@ class ProductController extends Controller
         return view ('admin.products.home', ["articulos"=>$articulos,"searchText"=>$query]);  
     }
     
+    
 
     public function getProductsAdd(){
         $categories=DB::table('categoria') -> where('estado','=','Activo') -> get();
-        return view ("admin.products.edit", ["categories"=>$categories]);
+        return view ("admin.products.add", ["categories"=>$categories]);
+       //return 'Hola';
     }
+
+    public function missingMethod()
+{
+    return "Carga bien pero están mal los métodos";
+}
 
     public function postProducts(Request $request){
         $inputs   = $request->all() ;
@@ -61,7 +68,6 @@ class ProductController extends Controller
         $articulo -> stock = $request -> get('stock');
         $articulo -> descripcion = $request -> get('descripcion');
         $articulo -> precio = $request -> get('precio');
-        $articulo -> estado = 'Activo';
 
         if($request->hasFile('imagen')){
             $file=$request->file('imagen');
@@ -70,7 +76,7 @@ class ProductController extends Controller
         }
 
         $articulo -> save();
-        return Redirect::to('/admin/products/activo');
+        return Redirect::to('/admin/products/1');
 
     }
 
@@ -98,7 +104,6 @@ class ProductController extends Controller
         $articulo -> stock = $request -> get('stock');
         $articulo -> descripcion = $request -> get('descripcion');
         $articulo -> precio = $request -> get('precio');
-        $articulo -> estado = $request -> get('estado');
 
         if($request->hasFile('imagen')){
             $articuloImage = public_path("/static/imagenes/articulos/{$articulo->imagen}");
@@ -115,15 +120,20 @@ class ProductController extends Controller
         
 
         $articulo -> save();
-        return Redirect::to('/admin/products/activo');
+        return Redirect::to('/admin/products/1');
+    }
+//API
+    public function getProducts(){
+        $productos=Product::all();
+        return response()->json($productos);
     }
 
     public function getProductDelete($id){
         $articulo=Product::findOrFail($id);
-        if ($articulo -> estado == 'Activo'){
-            $articulo -> estado ='Inactivo';
+        if ($articulo -> estado == '1'){
+            $articulo -> estado ='0';
             $articulo -> save();
-            return Redirect::to('/admin/products/inactivo')->with('status', 'Registro eliminado con éxito');
+            return Redirect::to('/admin/products/0')->with('status', 'Registro eliminado con éxito');
         } else {
             return back()->with('alert', 'Registro inexistente o prohibído');
         }

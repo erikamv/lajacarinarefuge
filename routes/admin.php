@@ -16,8 +16,8 @@ Route::prefix('/admin')->group(function(){
 
     //ModuleProducts
     Route::get('/products/{status}', 'Admin\ProductController@getHome')->name('products');
-    Route::get('/products/add', 'Admin\ProductController@getProductsAdd')->name('productsAdd');
-    Route::post('/products/add', 'Admin\ProductController@postProducts')->name('productsAdd');
+    Route::get('/products/add/product', 'Admin\ProductController@getProductsAdd')->name('productsAdd');
+    Route::post('/products/add/product', 'Admin\ProductController@postProducts')->name('productsAdd');
     Route::get('/products/{id}/edit', 'Admin\ProductController@getProductEdit')->name('productsEdit');
     Route::post('/products/{id}/edit', 'Admin\ProductController@productEdit')->name('productsEdit');
     //Route::get('/products/{id}/gallery/add', 'Admin\ProductController@productGalleryAdd');
@@ -53,6 +53,7 @@ Route::prefix('/admin')->group(function(){
     Route::get('/publications/modal-delete-{{id}}', 'Admin\PublicationController@getPublicationDelete')->name('publicationsDelete');
     //Route::post('/categories/#modal', 'Admin\CategoryController@getCategoryDelete');
     
+    
     //ModuleSolicitudes
     
     //Voluntarios
@@ -62,6 +63,11 @@ Route::prefix('/admin')->group(function(){
     Route::get('/volunteers/{id}/delete', 'VolunteersController@getVolunteerDelete')->name("volunteerDelete");
     Route::get('/volunteers/{id}/active', 'VolunteersController@getVolunteerActive')->name("volunteerActive");
     Route::post('/volunteers/{id}/active', 'VolunteersController@postVolunteerActive')->name("volunteerActive");
+
+    //Contactanos
+    Route::get('/contact/{status}', 'ContactController@getContactHome')->name('contact');
+    Route::get('/contact/{id}/view', 'ContactController@getContactView')->name("contactView");
+    Route::get('/contact/{id}/delete', 'ContactController@getContactDelete')->name("contactDelete");
 
     //Adopciones
     Route::get('/adoptions/{status}', 'AdoptionController@getAdoptionHome')->name('adoption');

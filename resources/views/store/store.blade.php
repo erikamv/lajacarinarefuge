@@ -51,7 +51,8 @@
           </div>
           <div class="about-col">
             <div class="filtrado">
-              <h5>BUSCAR</h5>         
+              <h5>BUSCAR</h5>  
+              @include('store.search')       
             </div>
           </div>
         </div>
@@ -62,11 +63,11 @@
           <div class="about-col">
             <div class="zoom">
               <div class="img">
-              <a href="{{url('/products/'.$art->idcategoria.'/'.$art->idarticulo)}}">
+              <a href="{{url('/products/'.$art->codigo.'/'.$art->idarticulo)}}">
                 <img src="{{url('/static/imagenes/articulos/'.$art->imagen)}}" alt="" class="img-fluid">
               </a> 
               </div>
-              <div class="info-producto">
+              <div class="info-producto" style="text-align: center">
                 <a href=""><p>{{$art->nombre}}</p></a>
                 <p style="text-align: center;"><b>$ {{$art->precio}}</b></p>
               </div>

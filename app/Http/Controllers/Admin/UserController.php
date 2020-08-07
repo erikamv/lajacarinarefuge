@@ -111,6 +111,9 @@ class UserController extends Controller
             'adoptionEdit' => $request->input('adoptionEdit'),
             'adoptionDelete' => $request->input('adoptionDelete'),
             'adoptionActive' => $request->input('adoptionActive'),
+            'contact' => $request->input('contact'),
+            'contactView' => $request->input('contactView'),
+            'contactDelete' => $request->input('contactDelete'),
             
         ];
         $permissions = json_encode($permissions);

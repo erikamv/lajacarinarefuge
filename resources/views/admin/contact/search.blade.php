@@ -1,4 +1,4 @@
-{!! Form::open(array('url'=>'/products/all', 'method'=>'GET', 'autocomplete'=> 'off', 'role'=>'search')) !!}
+{!! Form::open(array('url'=>'/admin/contact/{status}', 'method'=>'GET', 'autocomplete'=> 'off', 'role'=>'search')) !!}
 
 <div class="form-group">
     <div class="input-group">

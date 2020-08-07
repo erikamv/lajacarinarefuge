@@ -10,100 +10,57 @@ use DB;
 
 class ContactController extends Controller
 {
-    public function getVolunteer(){
-        return view('/volunteer');
+    public function getContact(){
+        return view('/contact');
     }
 
-    public function postVolunteer(Request $request){
-        $voluntario = new Volunteer;
-        $voluntario->idusuario=Auth::user()->id;
-        $voluntario->nombre=e($request->nombre);
-        $voluntario->apellido=e($request->apellido);
-        $voluntario->fechaNacimiento=e($request->nacimiento);
-        $voluntario->ciudad=e($request->ciudad);
-        $voluntario->direccion=e($request->direccion);
-        $voluntario->email=Auth::user()->email;
-        $voluntario->telefono=e($request->telefono);
-        $voluntario->observaciones=e($request->observaciones);
-        $voluntario->save();
+    public function postContact(Request $request){
+        $contacto = new Contact;
+        $contacto->nombre=e($request->nombre);
+        $contacto->email=e($request->email);
+        $contacto->mensaje=e($request->mensaje);
+        $contacto->save();
         return back()->with('status', 'Formulario enviado con éxito.');
 
     }
 
-    public function getVolunteerHome(Request $request, $status){
+    public function getContactHome(Request $request, $status){
         if($status=='all'){
             if ($request){
                 $query=trim($request->get('searchText'));
-                $voluntarios=DB::table('voluntario')
+                $contacto=DB::table('contacto')
                 -> where('nombre','LIKE','%'.$query.'%')
-                -> orwhere('apellido','LIKE','%'.$query.'%')
-                -> orderBy('idvoluntario','desc')
+                -> orderBy('idcontacto','desc')
                 -> paginate(10);
             } 
         } else {
             if ($request){
                 $query=trim($request->get('searchText'));
-                $voluntarios=DB::table('voluntario')
+                $contacto=DB::table('contacto')
                 -> where('estado','=',$status)
-                -> orderBy('idvoluntario','desc')
+                -> orderBy('idcontacto','desc')
                 -> paginate(10);
             } 
         }
 
-        return view ('admin.volunteers.home', ["voluntarios"=>$voluntarios,"searchText"=>$query]);  
+        return view ('admin.contact.home', ["contacto"=>$contacto,"searchText"=>$query]);  
     }
 
     
-    public function getVolunteerEdit($id){
-        $voluntario=Volunteer::findOrFail($id);
-        $data = ['voluntario'=> $voluntario];
-        return view("admin.volunteers.edit", $data);
+    public function getContactView($id){
+        $contacto=Contact::findOrFail($id);
+        $data = ['contacto'=> $contacto];
+        return view("admin.contact.edit", $data);
     }
 
-    public function postVolunteerEdit(Request $request, $id){
-        $inputs   = $request->all() ;
-        $voluntario=Volunteer::findOrFail($id);
-        $voluntario -> fechaInicio = $request -> get('fechaInicio');
-        $voluntario -> fechaFin = $request -> get('fechaFin');
-        if(!is_null($request->fechaFin)){
-            $voluntario -> estado = '2';
-        }
-        $voluntario -> save();
-        return redirect('/admin/volunteers/all')->with('status','Formulario actualizado con éxito');
-    }
-
-    public function getVolunteerActive($id){
-        $voluntario = Volunteer::findOrFail($id);
-        $data = ['voluntario'=> $voluntario];
-        return view ('admin.volunteers.modal', $data);
-    }
-
-
-    public function postVolunteerActive($id){
-        $voluntario = Volunteer::findOrFail($id);
-        if($voluntario->estado =='0'){
-            $voluntario->estado='1';
-            $voluntario->save();
-            $data = ['nombre'=>$voluntario->nombre, 'apellido'=>$voluntario->apellido, 'email'=>$voluntario->email];
-            Mail::to($voluntario->email)->send(new VolunteerSendConfirmation($data));
-            return redirect('/admin/volunteers/all')->with('status', 'Correo de confirmación enviado');
-        } 
-        else {
-            return redirect('/admin/volunteers/all')->with('alert', 'Este formulario no puede ser activado');
-        }
+    
+    
+    public function getContactDelete($id){
+        $contacto=Contact::findOrFail($id);
+        $contacto -> estado ='2';
+        $contacto -> save();
+        return Redirect::to('/admin/contact/2')->with('status', 'Registro eliminado con éxito');
         
-    }
-
-    public function getVolunteerDelete($id){
-        $voluntario=Volunteer::findOrFail($id);
-        if ($voluntario -> estado != '2'){
-            $voluntario -> estado ='2';
-            $voluntario -> save();
-            return Redirect::to('/admin/volunteers/2')->with('status', 'Registro eliminado con éxito');
-        } else {
-            return back()->with('alert', 'Registro inexistente o prohibído');
-        }
-
     }
     
 }
