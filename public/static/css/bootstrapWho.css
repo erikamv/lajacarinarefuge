@@ -132,15 +132,15 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: #555;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 
 a:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  color: #828860;
+  text-decoration: none;
 }
 
 a:not([href]):not([tabindex]) {
@@ -9000,7 +9000,7 @@ a.text-dark:hover, a.text-dark:focus {
 .menu{
   margin-left: auto;
   margin-right: 1rem;
-  width: 850px;
+  width: 800px;
 }
 
 .menu ul{
@@ -9283,14 +9283,14 @@ a.text-dark:hover, a.text-dark:focus {
   border-color: #828860;
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
-  width:25%;
-  
+  width: 25%;
 }
 
 .btn-adopta:hover{
   border-color: #828860;
   background-color: #828860;
   color: #fff;
+  
 }
 
 .btn-adopta:focus{

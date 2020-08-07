@@ -49,7 +49,7 @@
 		<div class="profile-sidebar">
 			<div class="profile-userpic">
                 <!--Section imagen-->
-				<img src={{asset("/static/imagenes/usuario.png")}} class="img-responsive" alt="">
+				<img src={{asset("/static/imagenes/usuarios/".Auth::user()->name)}} class="img-responsive" alt="">
             </div>
             
 			<div class="profile-usertitle">    
@@ -71,19 +71,19 @@
                 </a>
                 <!--Section EACH PAGE-->
 				<ul class="children collapse" id="sub-item-1">
-					<li><a class="" href="{{url('/admin/inicio')}}">
+					<li><a class="" href="{{url('/')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Inicio
 					</a></li>
-					<li><a class="" href="{{url('/admin/quienesSomos')}}">
+					<li><a class="" href="{{url('/information')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> ¿Quiénes Somos?
 					</a></li>
-					<li><a class="" href="{{url('/admin/ayuda')}}">
+					<li><a class="" href="{{url('/adoptions/all')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> ¿Cómo Ayudar?
 					</a></li>
-					<li><a class="" href="{{url('/admin/tienda')}}">
+					<li><a class="" href="{{url('/products/all')}}">
                         <span class="fa fa-arrow-right">&nbsp;</span> Tienda
                     </a></li>
-					<li><a class="" href="{{url('/admin/contacto')}}">
+					<li><a class="" href="{{url('/contact')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Contáctanos
 					</a></li>
 				</ul>
@@ -175,6 +175,9 @@
 						<span class="fa fa-arrow-right">&nbsp;</span> Hogar Temporal
 					</a></li>
 					@endif
+					<li><a class="" href="{{url('/admin/contacts')}}">
+						<span class="fa fa-arrow-right">&nbsp;</span> Contáctanos
+					</a></li>
 				</ul>
 			</li>
             

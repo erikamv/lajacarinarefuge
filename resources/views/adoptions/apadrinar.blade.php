@@ -93,7 +93,7 @@
               <div class="form-row pt-3">
                 <div class="form-group col-md-12">
                   <p>
-                    Es necesario llenar el <a href="#">formulario</a> de autorización de débito automático. Subelo junto con una copia de tu cédula de identidad</p>
+                  Es necesario llenar el <a href="https://drive.google.com/file/d/1boNAGL4VAnejr_RpeXSh8ayaaPunrlna/view?usp=sharing" style="color: #828860">formulario</a> de autorización de débito automático. Subelo junto con una copia de tu cédula de identidad</p>
                     <br>
                     <input id="archivoPadrino" type="file" class="imagenes" name="archivoPadrino[]" multiple="true" required onchange="validarExt()">
                   </div>

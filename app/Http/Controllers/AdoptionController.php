@@ -14,8 +14,8 @@ class AdoptionController extends Controller
 {
 
     //WEB
-    
 
+    
     public function getAdoptPost(Request $request, $status){
         if($status=='all'){
             if ($request){

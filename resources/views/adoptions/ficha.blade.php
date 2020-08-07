@@ -38,7 +38,10 @@
                 <p class="descripcion">{{$animal->historia}}</p>
                  <p class="vacunas">Vacunas: {{getStatusArray(null,$animal->vacunas)}}</p>
                  <p class="esterilizado">Esterilizado: {{getStatusArray(null,$animal->esterilizacion)}}</p>
-                 <div class="row">
+                 
+
+                  @if(!Auth::guest())
+                  <div class="row">
                     <div class="col-md-5 botones p-5">
                       <a href="{{url('/adoptions/file/'.$animal->idanimal.'/adoptform')}}"><button type="button" class="btn btn-adopta">Quiero Adoptar</button></a>
                     </div>
@@ -46,7 +49,9 @@
                     <div class="col-md-5 botones p-5">
                      <a href="{{url('/adoptions/file/'.$animal->idanimal.'/parentform')}}"><button type="button" class="btn btn-adopta">Quiero Apadrinar</button></a> 
                     </div>
-               
+                    @else
+                    <p>Si deseas adoptar o apadrinar a {{$animal->nombre}} inicia sesión y llena el formulario respectivo, así nos contactaremos contigo.</p>
+               @endif
                  </div>
               </div>
             </div>

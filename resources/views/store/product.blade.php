@@ -73,28 +73,23 @@
               </div>
               <div class="detalles col-md-6 pt-5">
                 <div class="nombre-producto">
-                  <h4 class="nombre">PLACAS DE IDENTIFICACIÓN DE ALUMINIO. VARIOS COLORES Y FORMAS</h4>
-                  <p style="font-size: 1rem;">Incluye grabación de datos</p>
+                  <h4 class="nombre">{{$articulo->nombre}}</h4>
+                  <p style="font-size: 1rem;">{{$articulo->descripcion}}</p>
                 </div>
                 <hr>
                 <div class="precio-producto pt-2">
-                  <h3 class="precio">$5.00</h3>
+                  <h3 class="precio">$ {{$articulo->precio}}</h3>
                   <p style="font-size: 1rem;">Impuestos incluidos</p>
                 </div>
                 <div class="datos-pedido">
-                  <form role="form" id="form">
+                  {!! Form::open(['url'=>'/products/'.$articulo->idarticulo.'/'.$articulo->idcategoria, 'method'=>'POST']) !!}
                     <div class="cantidad-producto pt-1">
                       <label for="cantidad"> <b>Cantidad:</b> </label>
                       <input id="cantidad" name="cantidad" type="number" class="form-control" required>
                     </div>
                     <div class="forma-producto pt-1">
                       <label for="forma"><b>Forma:</b></label>
-                      <select name="forma" id="forma" class="form-control" required>
-                        <option value="" >Formas disponibles</option> 
-                        <option value="hueso" >Hueso</option>
-                        <option value="huella" >Huella</option>
-                        <option value="estrella" >Estrella</option>
-                      </select>
+                      {!! Form::select('forma', $articulo->forma, ) !!}
                     </div>
                     <div class="color-producto pt-1">
                       <label for="color"> <b> Color:</b></label>
@@ -113,10 +108,14 @@
                   </form>
                 </div>
                 <div class="botones">
-                    <button type="button" class="btn btn-adopta" data-toggle="modal" data-target="#myModal">
+                  @if(!Auth::guest()) 
+                    <button type="submit" class="btn btn-adopta" data-toggle="modal" data-target="#myModal">
                       <i class="fas fa-shopping-cart"></i> Añadir al carrito</button>
+                      @else <p>Para agregar artículos al carrito debe iniciar sesión.</p>
+                      @endif
                 </div>
               </div>
+              {!! Form::close() !!}
             </div>
           </div>
         </div>
@@ -131,7 +130,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-modal" data-dismiss="modal">CONTINUAR COMPRANDO</button>
-            <a href=""><button type="button" class="btn btn-modal">PAGAR</button></a>
+          <a href="{{url('/products/'.Auth::user()->id.'/paid')}}"><button type="button" class="btn btn-modal">PAGAR</button></a>
           </div>
         </div>
 

@@ -29,7 +29,7 @@
         <p> > Sacarle lindas fotos para que podamos difundirlo en internet y nuestras redes sociales.</p>
       </div>
       <div class="about-col pt-2">
-        <p>Si te gustaría colaborar como hogar temporal llena el siguiente formulario y nos contactaremos contigo.</p>
+        <p>Si te gustaría colaborar como hogar temporal, inicia sesión y llena el siguiente formulario, así nos contactaremos contigo.</p>
       </div><br>
       <div class="mtop16">
         @if (session('status'))
@@ -52,6 +52,8 @@
         </div>
          @endif
     </div>
+    
+    @if(!Auth::guest())
       <div class="about-col pt-5">
         {!! Form::open(['url'=>'/homes/form', 'method'=>'POST']) !!}
         <fieldset>
@@ -122,7 +124,8 @@
             <button type="submit" class="btn btn-adopta">Guardar cambios</button>
           </div>
           {!! Form::close() !!}
-      </div>    
+      </div>
+      @endif    
   </section> <!--Fin información personal-->
 
 @endsection

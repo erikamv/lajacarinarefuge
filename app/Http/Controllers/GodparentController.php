@@ -12,9 +12,10 @@ use DB;
 class GodparentController extends Controller
 {
 
-    
-
-    public function getAdoptionHome(Request $request, $status){
+   
+   
+   
+    public function getParentHome(Request $request, $status){
         if($status=='all'){
             if ($request){
                 $query=trim($request->get('searchText'));

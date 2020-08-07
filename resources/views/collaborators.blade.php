@@ -59,8 +59,9 @@
         <h4>¿Te gustaria ser nuestro patrocinador?</h4>
         <p>Llena el siguiente formulario y nos contactaremos contigo</p>
       </div>
+
+
       <div class="about-col pt-4">
-        
         <fieldset>
           <legend>Información Básica</legend>
           {!! Form::open(['url'=>'/collaborators/form', 'method'=>'POST']) !!}
@@ -93,9 +94,9 @@
             <div class="boton pt-4" style="text-align: center;">
               <button type="submit" class="btn btn-adopta">Guardar cambios</button>
             </div>
-            {!! Form::close() !!}
         </fieldset>
       </div>
+      
     </div>    
   </section> <!--Fin información personal-->
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Models\Product;
+use App\Http\Models\Category;
 use App\Http\Models\PGallery;
 use Illuminate\Support\Facades\Redirect;
 
@@ -48,7 +49,7 @@ class ProductController extends Controller
 
     public function getProductsAdd(){
         $categories=DB::table('categoria') -> where('estado','=','Activo') -> get();
-        return view ("admin.products.add", ["categories"=>$categories]);
+        return view ("admin.products.edit", ["categories"=>$categories]);
     }
 
     public function postProducts(Request $request){

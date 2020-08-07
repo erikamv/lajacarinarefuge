@@ -145,7 +145,11 @@ class ContentController extends Controller
 
  //CONTACTANOS
  public function getContactHome(){
-    return view('/contacts');
+    return view('/contact');
+}
+
+public function getVPIHome(){
+    return view('/mashup');
 }
 
 }

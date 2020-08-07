@@ -49,11 +49,17 @@ class UserController extends Controller
         $user = Auth::user();
 
         if($request->hasFile('avatar')){
+            $file=$request->file('avatar');
+            $file->move(public_path().'/static/imagenes/usuarios/',$file->getClientOriginalName());
+            $articulo -> imagen = $file -> getClientOriginalName();
+        }
+
+       /* if($request->hasFile('avatar')){
             $avatar = $request->avatar;
             $avatarName = time() . $avatar->getClientOriginalName();
             $avatar->move('/static/imagenes/usuarios'.$avatarName);
             $user->avatar=$avatarName;
-        }
+        }*/
 
         $user->name=$request->name;
         $user->name=$request->lastname;

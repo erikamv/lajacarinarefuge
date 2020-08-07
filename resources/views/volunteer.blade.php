@@ -34,7 +34,7 @@
               nuestro refugio, para levantar nuestro proyecto. Pero también puedes apadrinar, donar o ser hogar temporal. 
               Compartiendo en las redes sociales, también puedes ayudar a salvar vidas. Entre tod@s podemos hacerlo 
               posible.</p>
-            <p class="pt-2">Si te gustaría unirte el equipo jacarino llena el siguiente formulario y nos contáctaremos contigo.</p>
+            <p class="pt-2">Si te gustaría unirte el equipo jacarino inicia sesión y llena el formulario, así nos contáctaremos contigo.</p>
           </div><br>
           <div class="mtop16">
             @if (session('status'))
@@ -57,6 +57,8 @@
             </div>
              @endif
         </div>
+
+        @if(!Auth::guest())
           <div class="about-col pt-5">
             <fieldset>
               <legend>Información Personal</legend>
@@ -117,6 +119,7 @@
                 {!! Form::close() !!}
             </fieldset>
             </div>
+            @endif
           </div>    
       </section> <!--Fin información personal-->
 
