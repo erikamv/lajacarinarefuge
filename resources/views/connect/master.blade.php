@@ -27,10 +27,12 @@
             <a href="#" class="instagram" title="Instagram"><i class="fa fa-instagram"></i></a>
             <a href="#" class="twitter" title="Twitter"><i class="fa fa-twitter"></i></a>
             <a href="#" class="youtube" title="Youtube"><i class="fab fa-youtube"></i></a>
+            @if(!Auth::guest())
             <a href="#" class="carrito" title="Carrito">
               <i class="fas fa-shopping-cart"></i>
               <span id="cart_menu_num" data-action="cart-can" class="badge rounded-circle">0</span>
             </a>
+            @endif
           </div>
         </div>
       </section>

@@ -50,7 +50,34 @@
                     <div class="form-group col-md-5">
                         <h2>Ingresar con tu cuenta</h2>
                         <div class="boton pt-5" style="text-align: center;">
-                            <button type="button" class="btn btn-facebook"><i class="fab fa-facebook-square"></i> Facebook</button>
+                            <a href="{{ url('/auth/redirect/facebook') }}" class="btn btn-primary"><i class="fa fa-facebook"></i> Facebook</a>
+
+
+                            <div id="fb-root"></div>
+                            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v8.0&appId=288426608922755&autoLogAppEvents=1" nonce="Zwe88Vcf"></script>
+                            <div class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+                        
+                            <script>
+                                window.fbAsyncInit = function() {
+                                FB.init({
+                                    appId      : '{your-app-id}',
+                                    cookie     : true,
+                                    xfbml      : true,
+                                    version    : '{api-version}'
+                                });
+                                    
+                                FB.AppEvents.logPageView();   
+                                    
+                                };
+                            
+                                (function(d, s, id){
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) {return;}
+                                js = d.createElement(s); js.id = id;
+                                js.src = "https://connect.facebook.net/en_US/sdk.js";
+                                fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));
+                          </script>
                         </div>
                         <div class="boton pt-5" style="text-align: center;">
                             <button type="button" class="btn btn-gmail"><i class="fab fa-google"></i> Gmail</button>

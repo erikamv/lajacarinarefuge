@@ -13,9 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Config::set('debugbar.enabled', false);
-
-Route::get('/', 'ContentController@getHome');
-
+//INICIO
+Route::get('/', 'ContentController@getHome')->name('inicio');
+//NOTICIAS
+Route::get('/','PublicationController@getPublicationPost')->name('post');
+//CONTACTANOS
+Route::get('/contacts', 'ContentController@getContactHome')->name('contactos');
+//QUIENES SOMOS
+Route::get('/information', 'ContentController@getInformationHome')->name('quienessomos');
+//ADOPCIONES
+Route::get('/adoptions/{status}', 'AdoptionController@getAdoptPost')->name('post');
+//HOGARES TEMPORALES
+Route::post('/homes/form', 'HomeController@postHomeIndex')->name('homeForm');
+Route::get('/homes/form', 'HomeController@getHomeIndex')->name('home');
+//COLABORADORES
+Route::get('/collaborators/form', 'CollaboratorController@getCollaboratorHome')->name('collaborator');
+//LOGIN
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');
 
 
 //Routers Auth
@@ -45,29 +60,33 @@ Route::post('/account/edit/password', 'UserController@postAccountPassword')->nam
 
 
 //ModuleBlog
-Route::get('/','PublicationController@getPublicationPost')->name('post');
 
-//ModuleVoluntarios
-Route::get('/volunteer/form', 'VolunteersController@getVolunteer')->name('volunteer');
-Route::post('/volunteer/form', 'VolunteersController@postVolunteer')->name('volunteerForm');
 
-//ModuleDonaciones
+//VOLUNTARIOS
+Route::get('/volunteer/form', 'ContentController@getVolunteer')->name('volunteer');
+//Route::post('/volunteer/form', 'ContentController@postVolunteer')->name('volunteerForm');
+
+//DONACIONES
 Route::get('/donations', 'ContentController@getDonationHome')->name('donation');
 
 //ModuleHogares
-Route::get('/homes/form', 'HomesController@getHomeIndex')->name('home');
-Route::post('/homes/form', 'HomesController@postHomeIndex')->name('homeForm');
+
+//Route::post('/homes/form', 'HomesController@postHomeIndex')->name('homeForm');
 
 //ModuleColaboradores
-Route::get('/collaborators/form', 'CollaboratorController@getCollaboratorHome')->name('collaborator');
-Route::post('/collaborators/form', 'CollaboratorController@postCollaboratorHome')->name('collaboratorForm');
+//Route::post('/collaborators/form', 'CollaboratorController@postCollaboratorHome')->name('collaboratorForm');
 
 
 //ModuleAdoptions/padrinos
-Route::get('/adoptions/file/{id}/adoptform', 'AdoptionController@getAdoptForm')->name('adoption');
+Route::get('/adoptions/file/{id}/adoptform', 'AdoptionController@getAdoptForm')->name('adoptionForm');
 Route::post('/adoptions/file/{id}/adoptform', 'AdoptionController@postAdoptForm')->name('adoptionForm');
-Route::get('/adoptions/{status}', 'AdoptionController@getAdoptPost')->name('post');
+
+
+
+//Animales
 Route::get('/adoptions/file/{id}', 'AdoptionController@getAdoptFile')->name('animalFile');
+
+//ModuleAdoptions/padrinos
 Route::get('/adoptions/file/{id}/parentform', 'AdoptionController@getGodparentForm')->name('godparentForm');
 Route::post('/adoptions/file/{id}/parentform', 'AdoptionController@postGodparentForm')->name('godparentForm');
 
