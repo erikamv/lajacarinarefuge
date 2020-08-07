@@ -10,6 +10,7 @@
           <div class="row">
             <div class="col-md-6 pt-4">
               <h3>Escríbenos</h3>
+              {!!  Form::open(['url'=>'/contact/form', 'method'=>'POST']) !!}
               <div class="form-group">
                 <fieldset>
                   <label for="nombre" class="mt-2 pt-2">Nombre</label>
@@ -17,12 +18,13 @@
                   <label for="email" class="mt-2 pt-2">Email</label>
                   <input id="email" name="email" type="email" class="form-control"required>
                   <label for="mensaje" class="mt-2 pt-2">Mensaje</label>
-                  <textarea id="mensaje" name="mensaje" class="form-control" rows="10" required></textarea>
+                  <textarea id="observaciones" name="mensaje" class="form-control" rows="10" required></textarea>
                   <div class="boton pt-5" style="text-align: center;">
-                    <a href=""><button type="button" class="btn btn-adopta">Enviar</button></a> 
+                    <button type="submit" class="btn btn-adopta">Enviar</button> 
                   </div>
                 </fieldset>
               </div>
+              {!! Form::close() !!}
             </div>
             <div class="col-md-6 pt-4">
               <h3>Contáctos</h3>

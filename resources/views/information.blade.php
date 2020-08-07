@@ -27,10 +27,10 @@
           </div>
           <div class="equipo">
             <div class="about-col pt-4">
-              <img src="/static/imagenes/Rescate1 (1).png" alt="">
-              <img src="/static/imagenes/Rescate.png" style="margin-left: 1.5rem;" alt="">
-              <img src="/static/imagenes/Rescatistas.png" style="margin-left: 1.5rem;" alt="">
-              <img src="/static/imagenes/Rescatando.png" style="margin-left: 1.5rem;" alt="">
+              <img src="/static/imagenes/Rescate1 (1).png" alt="" data-fancybox="gallery">
+              <img src="/static/imagenes/Rescate.png" style="margin-left: 1.5rem;" alt="" data-fancybox="gallery">
+              <img src="/static/imagenes/Rescatistas.png" style="margin-left: 1.5rem;" alt="" data-fancybox="gallery">
+              <img src="/static/imagenes/Rescatando.png" style="margin-left: 1.5rem;" alt="" data-fancybox="gallery">
              </div>
           </div>
           <div class="about-col pt-5">
